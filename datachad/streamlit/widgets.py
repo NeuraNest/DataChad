@@ -26,6 +26,8 @@ from datachad.streamlit.helper import (
     update_chain,
 )
 
+import os
+
 
 def page_header():
     # Page options and header
@@ -122,18 +124,21 @@ def authentication_widget():
                 type="password",
                 help=OPENAI_HELP,
                 placeholder="This field is mandatory",
+                value=os.environ.get("OPENAI_API_KEY", ""),
             )
             activeloop_token = st.text_input(
                 "ActiveLoop Token",
                 type="password",
                 help=ACTIVELOOP_HELP,
                 placeholder="Optional, using ours if empty",
+                value=os.environ.get("ACTIVELOOP_TOKEN", ""),
             )
             activeloop_id = st.text_input(
                 "ActiveLoop Organisation Name",
                 type="password",
                 help=ACTIVELOOP_HELP,
                 placeholder="Optional, using ours if empty",
+                value=os.environ.get("ACTIVELOOP_ID", ""),
             )
             submitted = st.form_submit_button("Submit")
             if submitted:
